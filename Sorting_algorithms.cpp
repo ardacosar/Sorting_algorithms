@@ -13,11 +13,20 @@ struct MyArray{
 	
 	void controlFirstTenArrayData()
 	{
-		cout<<"First Ten Data"<<endl;
 		for(int i = 0; i < 10; i++)
 		{
 			cout<<array[i]<< " ";
 		}
+		cout<<" | First Ten Data" << endl;
+	}
+	
+	void controlLastTenArrayData()
+	{
+		for(int i = 10; i > 0; i--)
+		{
+			cout<<array[size - i]<< " ";
+		}
+		cout<<" | Last Ten Data" << endl;
 	}
 	
 	MyArray(int size_)
@@ -47,15 +56,21 @@ int main()
 	fillArrayWithRandomData(array1);
 	fillArrayWithRandomData(array2);
 	fillArrayWithRandomData(array3);
-
+	
+	cout << "\n\n" << "			  Selection Sort" << endl;
+	cout << "________________________________________________________________" << "\n\n";
 	processTimeCalculator(array1, "Selection Sort");  // 0.001
 	processTimeCalculator(array2, "Selection Sort");  // 0.031
 	processTimeCalculator(array3, "Selection Sort");  // 0.127
-	cout<<endl<<endl;
+	
+	cout << "\n\n" << "			  Bubble Sort" << endl;
+	cout << "________________________________________________________________" << "\n\n";
 	processTimeCalculator(array1, "Bubble Sort");  // 0.002
 	processTimeCalculator(array2, "Bubble Sort");  // 0.035
 	processTimeCalculator(array3, "Bubble Sort");  // 0.138
-	cout<<endl<<endl;
+	
+	cout << "\n\n" << "			  Insertion Sort" << endl;
+	cout << "________________________________________________________________" << "\n\n";
 	processTimeCalculator(array1, "Insertion Sort");  // 0.002
 	processTimeCalculator(array2, "Insertion Sort");  // 0.035
 	processTimeCalculator(array3, "Insertion Sort");  // 0.139
@@ -94,8 +109,11 @@ void processTimeCalculator(MyArray ar,char* method)
 		end = clock();
 	}
 	
+	
+	cout << method << " - " << ar.getSize() << " data : " << (float)(end - start) / CLOCKS_PER_SEC << "s" << "\n\n";
 	ar.controlFirstTenArrayData();
-	cout << "| " << method << " - " << ar.getSize() << " data : " << (float)(end - start) / CLOCKS_PER_SEC << endl;
+	ar.controlLastTenArrayData();
+	cout << "----------------------------------------------------------------" << "\n\n";
 }
 
 void swapData(MyArray ar, int firstData, int secondData)
